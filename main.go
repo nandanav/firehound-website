@@ -1,19 +1,15 @@
 package main
 
 import (
-	"os"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, World! This is a test handler")
-}
-
-func journalViewHandler(w http.ResponseWriter, r *http.Request) {
+func journalViewHandler(rw http.ResponseWriter, r *http.Request) {
 	journalEntry := r.URL.Path[len("/journal/"):]
-	fmt.Fprintf(w, "<h1>Hello, welcome to journal entry %s<h1>", journalEntry)
+	fmt.Fprintf(rw, "<h1>Hello, welcome to journal entry %s<h1>", journalEntry)
 }
 
 func main() {
@@ -23,8 +19,16 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-	http.HandleFunc("/", rootHandler)
+	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("static/css"))))
+
+	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+		http.ServeFile(rw, r, "static/index.html")
+	})
+
+	http.HandleFunc("/favicon.svg", func(rw http.ResponseWriter, r *http.Request) {
+		http.ServeFile(rw, r, "static/favicon.svg")
+	})
 	http.HandleFunc("/journal/", journalViewHandler)
 
-	log.Fatal(http.ListenAndServe(":" + port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
