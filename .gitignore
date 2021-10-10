@@ -1,0 +1,6 @@
+.DS_Store
+heroku.yml
+bin/
+Dockerfile
+Makefile
+Procfile
