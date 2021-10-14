@@ -12,16 +12,17 @@
         <a class="active" href="/updates.html">Updates</a>
     </div>
     <div class="subNavbar">
-        <a class="active" href="#">Journals</a>
-        <a href="#">Weekly Goals</a>
+        <a {{ if .IsJournal }} class="active" {{ end }} href="/updates/journals">Journals</a>
+        <a {{ if .IsGoals }} class="active" {{ end }} href="/updates/goals">Weekly Goals</a>
+        <a {{ if and (not .IsJournal) (not .IsGoals) }} class="active" {{ end }} href="/updates/bibliography.html">Bibliography</a>
     </div>
-    <div class="content">
+    <div class="container">
         {{ if .IsJournal }}
             {{ template "journalEntry" .Data}}
         {{ else if .IsGoals }}
-
+            {{ template "dailyGoals" .Data}}
         {{ else }}
-
+            Bibliography TBA
         {{ end }}
     </div>
 </body>

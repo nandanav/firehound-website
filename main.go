@@ -45,13 +45,14 @@ func main() {
 	tmpls["index.html"] = template.Must(template.ParseFiles("templates/header.tmpl.html", "static/index.html"))
 	tmpls["timeline.html"] = template.Must(template.ParseFiles("templates/header.tmpl.html", "static/timeline.html"))
 	tmpls["advisors.html"] = template.Must(template.ParseFiles("templates/header.tmpl.html", "static/advisors.html"))
-	tmpls["updates.html"] = template.Must(template.ParseFiles("templates/header.tmpl.html", "templates/journal.tmpl.html", "static/updates.html"))
+	tmpls["updates.html"] = template.Must(template.ParseFiles("templates/header.tmpl.html", "templates/journals.tmpl.html", "templates/goals.tmpl.html", "static/updates.html"))
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
 	}
 
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("static/css"))))
+	http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("static/assets"))))
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 		staticFileViewHandler(rw, r, "index.html", "testing")
@@ -66,7 +67,22 @@ func main() {
 	})
 
 	http.HandleFunc("/updates.html", func(rw http.ResponseWriter, r *http.Request) {
-		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: Journal{Title: "testing"}}
+		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: Journal{Title: "testing journal"}}
+		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
+	})
+
+	http.HandleFunc("/updates/journals", func(rw http.ResponseWriter, r *http.Request) {
+		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: Journal{Title: "testing journal"}}
+		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
+	})
+
+	http.HandleFunc("/updates/goals", func(rw http.ResponseWriter, r *http.Request) {
+		updatePageConfig := UpdatesPage{IsJournal: false, IsGoals: true, Data: Journal{Title: "testing goals"}}
+		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
+	})
+
+	http.HandleFunc("/updates/bibliography.html", func(rw http.ResponseWriter, r *http.Request) {
+		updatePageConfig := UpdatesPage{IsJournal: false, IsGoals: false, Data: nil}
 		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
 	})
 

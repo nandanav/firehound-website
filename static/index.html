@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {{ template "header" .}}
+
 </head>
 <body>
     <div class="navbar">
@@ -9,6 +10,44 @@
         <a href="/timeline.html">Timeline</a>
         <a href="/advisors.html">Advisors</a>
         <a href="/updates.html">Updates</a>
+    </div>
+    <div class = "container">
+        <div class = "content">
+            <div class="parallax"></div>
+            <h1 style="margin-top:1.5%;">About Us</h1>
+            <div class="cards" style="margin-top:25px;">
+                <div class="card">
+                    <h2 style="margin-left:5%;">About Project</h2>
+                    <p style="margin:0 5%; padding-bottom: 2%;">Main Goal: Attempt to find a zero-day vulnerability in a web browser.</p>
+                    <p style="margin:0 5%; padding-bottom: 2%;">Secondary Goal: Gather data about vulnerability patch rates and other information about browsers</p>
+                    <p style="margin:0 5%; padding-bottom: 2%;">Anticipated Research: Browser internals, computer internals, types of bugs in browsers, etc.</p>
+                    <p style="margin:0 5%;">Anticipated Software Used: Visual Studio Code, debuggers like radare2 or lldb, web browsers, and potentially VMWare
+                    Fusion</p>
+                </div>
+                <div class="card" style="position:relative;">
+                    <div class="profile-pic" style="position:absolute;right:-40px;top:-80px;"></div>
+                    <h2 style="margin-left:5%;">About Me</h2>
+                    <h3 style="margin-left: 5%;">Abhinav Vemulapalli</h3>
+                    <p style="margin:0 5%;">I love computer science, more specifically, hacking. I've obtained multiple
+                        certifications
+                        including the Offensive Security Certified Professional (OSCP). A rigorous 24-hour exam within which I have to
+                        compromise nearly 5 machines in a network.
+                        After the first 24-hour period, I had another 24-hours to write a report of my findings and submit it. In
+                        addition
+                        to that, I've competed in many
+                        cybersecurity competitions called Capture the Flags (CTFs).</p>
+                </div>
+            </div>
+            <h1 style="margin-top: 5%;">Project Objectives</h1>
+            <ul style="padding-bottom: 5%; list-style-type: circle;">
+                <li>Gain a deeper understanding of computer internals and browser internals</li>
+                <li>Understand the mindset and process of security research</li>
+                <li>Developing better research skills and compiling gathered information into presentable data</li>
+                <li>Practice my exploitation skills and learn new exploitation methods</li>
+                <li>Evolve my presentation skills to include presenting technical knowledge to an audience without the necessary
+                    technical literacy</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
