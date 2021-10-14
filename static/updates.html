@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {{ template "header"}}
     <link rel="stylesheet" href="/css/updates.css">
 </head>
+
 <body>
     <div class="navbar">
         <a href="/">Home</a>
@@ -14,15 +16,61 @@
     <div class="subNavbar">
         <a {{ if .IsJournal }} class="active" {{ end }} href="/updates/journals">Journals</a>
         <a {{ if .IsGoals }} class="active" {{ end }} href="/updates/goals">Weekly Goals</a>
-        <a {{ if and (not .IsJournal) (not .IsGoals) }} class="active" {{ end }} href="/updates/bibliography.html">Bibliography</a>
+        <a {{ if and (not .IsJournal) (not .IsGoals) }} class="active" {{ end }}
+            href="/updates/bibliography.html">Bibliography</a>
     </div>
     <div class="container">
         {{ if .IsJournal }}
-            {{ template "journalEntry" .Data}}
+        {{ template "journalEntry" .Data}}
         {{ else if .IsGoals }}
-            {{ template "dailyGoals" .Data}}
+        {{ template "dailyGoals" .Data}}
         {{ else }}
-            Bibliography TBA
+        <div class="content" style="font-size: 1.2em;">
+            <p><p style='text-align:center;'>Works Cited</p></p>
+            <p>About Page of the Association. <i>National Cybersecurity Student Association</i>, www.cyberstudents.org/. </p>
+            <p>"Academic Catalog 2021-2022 Cybersecurity." <i>Northeastern University</i>, catalog.northeastern.edu/ </p>
+            <p>     undergraduate/computer-information-science/cybersecurity/#coursestext. </p>
+            <p>Brotherson, Marc. Telephone interview with the author. </p>
+            <p>"CyberCorps: Scholarship for Service (SFS) Participating Institutions." <i>CyberCrops: Scholarship for </i></p>
+            <p>     <i>Service</i>, Official Website of the U.S. Office of Personal Management, www.sfs.opm.gov/ </p>
+            <p>     ContactsPI.aspx. </p>
+            <p>"Cybersecurity Concentration." <i>The University of Texas at Austin Computer Science</i>, www.cs.utexas.edu/ </p>
+            <p>     concentrations/cybersecurity. </p>
+            <p>"Developing and Connecting Cybersecurity Leaders Globally." <i>Information Systems Security </i></p>
+            <p>     <i>Association</i>, www.issa.org/about-issa/. </p>
+            <p>Eastwood, Brian. "Cybersecurity Careers: The 12 Highest-Paying Cybersecurity Jobs." <i>Northeastern </i></p>
+            <p>     <i>University</i>, 29 Apr. 2021, www.northeastern.edu/graduate/blog/ </p>
+            <p>     top-paying-cybersecurity-careers/. </p>
+            <p>"Exploit Developer Salaries." <i>Glassdoor</i>, www.glassdoor.com/Salaries/ </p>
+            <p>     exploit-developer-salary-SRCH_KO0,17.htm. </p>
+            <p>"Information Security Analyst." <i>SpaceX</i>, boards.greenhouse.io/spacex/jobs/ </p>
+            <p>     5369460002?gh_jid=5369460002. </p>
+            <p>"Master of Cybersecurity Course Listing." <i>Georgia Tech Institute for Information Security and </i></p>
+            <p>     <i>Privacy</i>, iisp.gatech.edu/master-cybersecurity-course-listing. </p>
+            <p>"Master of Science in Cybersecurity Engineering Elective Courses." <i>University of Washington Bothell</i>, </p>
+            <p>     www.uwb.edu/cybersecurity/curriculum/elective-courses. </p>
+            <p>"Occupational Outlook Handbook, Information Security Analysts." <i>U.S. Bureau of Labor Statistics</i>, 9 </p>
+            <p>     Apr. 2021, www.bls.gov/ooh/computer-and-information-technology/ </p>
+            <p>     information-security-analysts.htm#tab-1. Accessed 23 Aug. 2021. </p>
+            <p>"School of Computer Science Courses." <i>Carnegie Mellon University</i>, coursecatalog.web.cmu.edu/ </p>
+            <p>     schools-colleges/schoolofcomputerscience/#coursestextcontainer. </p>
+            <p>"Security and Privacy Courses at CMU." <i>Carnegie Mellon University Security and Privacy Institute</i>, </p>
+            <p>     www.cylab.cmu.edu/education/courses.html. </p>
+            <p>"Security Engineer III - Red Team (Seattle/NYC/Austin)." <i>Amazon Jobs</i>, Amazon.com, www.amazon.jobs/en/ </p>
+            <p>     jobs/1695048/security-engineer-iii-red-team-seattle-nyc-austin. </p>
+            <p>"Senior Manager, Red Team." <i>Verizon</i>, 20 Aug. 2021, www.verizon.com/about/work/jobs/ </p>
+            <p>     7323182-senior-manager-red-team?hl=22CyberOPS. </p>
+            <p>"Senior Vulnerability Researcher." <i>Talos Intelligence</i>, Cisco, 5 Sept. 2021, talosintelligence.com/ </p>
+            <p>     careers/senior-vulnerability-researcher. </p>
+            <p>"20 Coolest Careers in Cybersecurity." <i>SANS Institute</i>, www.sans.org/cybersecurity-careers/ </p>
+            <p>     20-coolest-cyber-security-careers/. </p>
+            <p>"2021-2022 Academic Catalog Computer Science." <i>Colorado School of Miens</i>, catalog.mines.edu/ </p>
+            <p>     undergraduate/programs/cs/#coursestext. </p>
+            <p>"Vulnerability Researcher - Penetration Testing." <i>Dell Technologies</i>, jobs.dell.com/job/ </p>
+            <p>     annapolis-junction/vulnerability-researcher-penetration-testing/375/19155786. </p>
+            <p>Zeltser, Lenny. "How You Can Start Learning Malware Analysis." <i>SANS Institute</i>, 4 Aug. 2021, </p>
+            <p>     www.sans.org/blog/how-you-can-start-learning-malware-analysis/. </p>
+        </div>
         {{ end }}
     </div>
 </body>
