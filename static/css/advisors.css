@@ -1,0 +1,9 @@
+.profile-pic-ned {
+  width: 200px;
+  height: 200px;
+  background-image: url("/assets/advisors/ned.jpg");
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.33) 0px 6px 6px;
+}
