@@ -7,3 +7,33 @@
   background-size: cover;
   box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.33) 0px 6px 6px;
 }
+
+.profile-pic-pranay {
+  width: 200px;
+  height: 200px;
+  background-image: url("/assets/advisors/pranay.png");
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.33) 0px 6px 6px;
+}
+
+.profile-pic-tavin {
+  width: 200px;
+  height: 200px;
+  background-image: url("/assets/advisors/tavin.jpg");
+  border-radius: 50%;
+  background-position: 50% 35%;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.33) 0px 6px 6px;
+}
+
+.profile-pic-vince {
+  width: 200px;
+  height: 200px;
+  background-image: url("/assets/advisors/vince.jpg");
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.33) 0px 6px 6px;
+}
