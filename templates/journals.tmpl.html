@@ -1,7 +1,14 @@
-{{ define "journalEntry" }}
+{{ define "journalEntries" }}
 
-<div class="journalEntry">
-    {{.Title}}
+<div class="journalEntries">
+    <div class="journalEntry" style="margin-top: 10px; margin-bottom: 10px;">
+        {{ range . }}
+            <h1>Journal {{ .JournalNumber }}</h1>
+            <a target="_blank" href="{{.PdfFilePath}}" title="{{.Title}}">Journal {{ .JournalNumber }}: {{ .Title }}</a>
+            <br>
+            <a href="https://docs.google.com/document/d/1mleWsWtDKepWgmhJUmAxJ_XcylMFvOE5ykbg_w2s44A/edit?usp=sharing">Alternate Link in case PDF doesn't work</a>
+        {{ end }}
+    </div>
 </div>
 
 {{ end }}

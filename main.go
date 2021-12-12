@@ -2,7 +2,9 @@ package main
 
 import (
 	// "fmt"
+	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -15,26 +17,15 @@ type UpdatesPage struct {
 }
 
 type Journal struct {
-	Title string
+	JournalNumber int
+	Title         string
+	PdfFilePath   string
 }
 
 var tmpls = make(map[string]*template.Template)
 
 func staticFileViewHandler(rw http.ResponseWriter, r *http.Request, file string, data interface{}) {
 	err := tmpls[file].ExecuteTemplate(rw, file, data)
-	if err != nil {
-		http.Error(rw, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-func journalViewHandler(rw http.ResponseWriter, r *http.Request) {
-	// journalEntry := r.URL.Path[len("/journal/"):]
-
-	journal := Journal{Title: "Testing"}
-
-	t, _ := template.ParseFiles("templates/updates.tmpl.html")
-	err := t.Execute(rw, journal)
-
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 	}
@@ -67,12 +58,40 @@ func main() {
 	})
 
 	http.HandleFunc("/updates.html", func(rw http.ResponseWriter, r *http.Request) {
-		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: Journal{Title: "testing journal"}}
+		files, fileReadErr := ioutil.ReadDir("static/assets/journals/")
+
+		if fileReadErr != nil {
+			log.Fatal(fileReadErr, ": failed to read PDF file directory")
+		}
+		journals := make([]Journal, len(files))
+		for fileNumber, file := range files {
+			journals[fileNumber] = Journal{
+				JournalNumber: fileNumber + 1,
+				Title:         file.Name(),
+				PdfFilePath:   fmt.Sprintf("/assets/journals/%s", file.Name()),
+			}
+		}
+
+		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: journals}
 		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
 	})
 
 	http.HandleFunc("/updates/journals", func(rw http.ResponseWriter, r *http.Request) {
-		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: Journal{Title: "testing journal"}}
+		files, fileReadErr := ioutil.ReadDir("static/assets/journals/")
+
+		if fileReadErr != nil {
+			log.Fatal(fileReadErr, ": failed to read PDF file directory")
+		}
+		journals := make([]Journal, len(files))
+		for fileNumber, file := range files {
+			journals[fileNumber] = Journal{
+				JournalNumber: fileNumber + 1,
+				Title:         file.Name(),
+				PdfFilePath:   fmt.Sprintf("/assets/journals/%s", file.Name()),
+			}
+		}
+
+		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: journals}
 		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
 	})
 
@@ -89,8 +108,6 @@ func main() {
 	http.HandleFunc("/favicon.svg", func(rw http.ResponseWriter, r *http.Request) {
 		http.ServeFile(rw, r, "static/favicon.svg")
 	})
-
-	http.HandleFunc("/journal/", journalViewHandler)
 
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
