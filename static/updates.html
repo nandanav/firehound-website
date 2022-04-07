@@ -8,10 +8,13 @@
 
 <body>
     <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/timeline.html">Timeline</a>
-        <a href="/advisors.html">Advisors</a>
-        <a class="active" href="/updates.html">Updates</a>
+        <img src="/favicon.svg" alt="Company Logo" style="margin-left: 30px; height: 80px; width: 80px;">
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/timeline.html">Timeline</a>
+            <a href="/advisors.html">Advisors</a>
+            <a class="active" href="/updates.html">Updates</a>
+        </div>
     </div>
     <div class="subNavbar">
         <a {{ if .IsJournal }} class="active" {{ end }} href="/updates/journals">Journals</a>

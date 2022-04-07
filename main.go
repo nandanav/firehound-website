@@ -67,7 +67,7 @@ func main() {
 		for fileNumber, file := range files {
 			journals[fileNumber] = Journal{
 				JournalNumber: fileNumber + 1,
-				Title:         file.Name(),
+				Title:         file.Name()[2:],
 				PdfFilePath:   fmt.Sprintf("/assets/journals/%s", file.Name()),
 			}
 		}
@@ -90,6 +90,8 @@ func main() {
 				PdfFilePath:   fmt.Sprintf("/assets/journals/%s", file.Name()),
 			}
 		}
+
+		fmt.Println(journals)
 
 		updatePageConfig := UpdatesPage{IsJournal: true, IsGoals: false, Data: journals}
 		staticFileViewHandler(rw, r, "updates.html", updatePageConfig)
